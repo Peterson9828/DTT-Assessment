@@ -20,7 +20,9 @@ const filter = (text) => {
 }
 
 const handleButtonSelection = (option) => {
-  houseStore.sortBy = option?.value
+  if (option) {
+    houseStore.sortBy = option?.value
+  }
   houseStore.sortList()
 }
 
@@ -35,12 +37,7 @@ const handleOnDelete = async (id) => {
     <div class="title">
       <h1>Houses</h1>
       <RouterLink to="/houses/create" class="routerLink">
-        <DTTButton
-          class="createBtn desktop"
-          label="Create new"
-          backgroundColor="primary"
-          icon="ic_plus_white@3x"
-        />
+        <DTTButton class="createBtn desktop" label="Create new" backgroundColor="primary" icon="ic_plus_white@3x" />
 
         <button class="icon-button mobile">
           <img class="icon" src="@/static/ic_plus_grey@3x.png" alt="location icon" />
@@ -50,23 +47,13 @@ const handleOnDelete = async (id) => {
 
     <div class="options">
       <DTTSearch class="search" placeholder="Search for a house" @inputSearch="filter" />
-      <DTTToggleSelection
-        v-if="houseStore.list.length > 0"
-        class="toggleSelection"
-        :options="TOGGLE_OPTIONS"
-        @onSelect="handleButtonSelection"
-      />
+      <DTTToggleSelection v-if="houseStore.list.length > 0" class="toggleSelection" :options="TOGGLE_OPTIONS"
+        @onSelect="handleButtonSelection" />
     </div>
     <div v-if="houseStore.list.length">
       <h2 v-if="houseStore.text" class="results">{{ houseStore.totalHouses }} results found</h2>
       <div class="cardList">
-        <Card
-          v-for="house in houseStore.list"
-          :key="house.id"
-          :house="house"
-          class="card"
-          @onDelete="handleOnDelete"
-        />
+        <Card v-for="house in houseStore.list" :key="house.id" :house="house" class="card" @onDelete="handleOnDelete" />
       </div>
     </div>
     <div v-else class="empty">
@@ -82,18 +69,22 @@ const handleOnDelete = async (id) => {
   grid-template-columns: 1fr;
   grid-gap: 20px;
 }
+
 .search {
   width: 500px;
 }
+
 .title {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+
   .createBtn {
     padding: 25px;
   }
 }
+
 .options {
   display: flex;
   justify-content: space-between;
@@ -105,9 +96,11 @@ const handleOnDelete = async (id) => {
     width: 350px;
   }
 }
+
 .routerLink {
   text-decoration: none;
 }
+
 .card {
   cursor: pointer;
 }
@@ -121,6 +114,7 @@ const handleOnDelete = async (id) => {
   flex-direction: column;
   align-items: center;
   text-align: center;
+
   .emptyImg {
     width: 400px;
     margin-bottom: 40px;
@@ -132,22 +126,26 @@ const handleOnDelete = async (id) => {
 }
 
 @media (max-width: 767px) {
-  .title > h1 {
+  .title>h1 {
     flex-grow: 1;
     text-align: center;
   }
+
   .options {
     flex-direction: column;
     margin-bottom: 15px;
     gap: 15px;
+
     .search {
       width: 100%;
       box-sizing: border-box;
     }
+
     .toggleSelection {
       width: 100%;
     }
   }
+
   .empty {
     .emptyImg {
       width: 250px;

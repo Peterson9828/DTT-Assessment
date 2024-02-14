@@ -1,6 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
-import DTTButton from '@/components/dttComponents/DTTButton.vue'
+import DTTButton from '../dttComponents/DTTButtonDelete.vue'
 
 defineProps({
   title: {
@@ -18,7 +18,9 @@ defineProps({
   }
 })
 
-const emit = defineEmits(['onConfirm'])
+const emit = defineEmits<{
+  onConfirm: []
+}>()
 const showDialog = ref(false)
 
 const confirm = () => {
@@ -91,6 +93,7 @@ const cancel = () => {
 .dialog button {
   margin: 10px;
 }
+
 .button {
   width: 100%;
 }

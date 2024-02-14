@@ -21,11 +21,7 @@ const DESCRIPTION = 'Are you sure you want to delete this listing? This action c
           <button class="icon-button" @click.stop="$router.push(`/houses/edit/${house.id}`)">
             <img class="icon" src="@/static/ic_edit@3x.png" alt="location icon" />
           </button>
-          <DTTButtonDelete
-            title="Delete listing"
-            :description="DESCRIPTION"
-            @onConfirm="$emit('onDelete', house.id)"
-          />
+          <DTTButtonDelete title="Delete listing" :description="DESCRIPTION" @onConfirm="$emit('onDelete', house.id)" />
         </div>
       </div>
       <p>${{ house.price }}</p>
@@ -52,12 +48,14 @@ const DESCRIPTION = 'Are you sure you want to delete this listing? This action c
   display: flex;
   padding: 1rem;
   height: 180px;
+
   .cardImg {
     object-fit: cover;
     object-position: left;
     border-radius: 10px;
     width: 180px;
   }
+
   .cardContent {
     display: flex;
     flex-direction: column;
@@ -65,10 +63,12 @@ const DESCRIPTION = 'Are you sure you want to delete this listing? This action c
     padding: 1rem;
     width: 100%;
     gap: 10px;
+
     .title {
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       .actions {
         display: flex;
         align-items: center;
@@ -76,6 +76,7 @@ const DESCRIPTION = 'Are you sure you want to delete this listing? This action c
       }
     }
   }
+
   .additionalInfo {
     display: flex;
     align-items: center;
@@ -87,21 +88,24 @@ const DESCRIPTION = 'Are you sure you want to delete this listing? This action c
   .card {
     height: 100px;
     padding: 1rem 10px;
+
     .cardContent {
       padding: 0 0 0 10px;
       gap: 0;
+
       .title {
         .actions {
           gap: 10px;
         }
       }
     }
+
     .additionalInfo {
       margin-top: 15px;
     }
+
     .cardImg {
       width: 100px;
     }
   }
-}
-</style>
+}</style>

@@ -1,15 +1,16 @@
-<script setup>
+<script setup lang="ts">
 import { ref, watch } from 'vue'
+interface Option {
+  label: string
+  value: string
+}
+interface Props {
+  option: Option
+  selected?: boolean
+}
 
-const props = defineProps({
-  option: {
-    type: Object,
-    required: true
-  },
-  selected: {
-    type: Boolean,
-    required: false
-  }
+const props = withDefaults(defineProps<Props>(), {
+  selected: false
 })
 
 const emit = defineEmits(['update:selected'])

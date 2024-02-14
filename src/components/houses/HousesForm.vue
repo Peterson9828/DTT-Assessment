@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import DTTInput from '@/components/dttComponents/DTTInput.vue'
 import DTTTextArea from '@/components/dttComponents/DTTTextarea.vue'
 import DTTSelect from '@/components/dttComponents/DTTSelect.vue'
@@ -6,17 +6,30 @@ import DTTButton from '@/components/dttComponents/DTTButton.vue'
 import DTTImgAttach from '@/components/dttComponents/DTTImgAttach.vue'
 import { ref } from 'vue'
 import { useFormStore } from '@/stores/form'
-
-const props = defineProps({
-  house: {
-    type: Object,
-    required: true
-  },
-  submitLabel: {
-    type: String,
-    required: true
+interface House {
+  price: number
+  rooms: {
+    bedrooms: number
+    bathrooms: number
   }
-})
+  size: number
+  location: {
+    street: string
+    houseNumber: number
+    houseNumberAddition: string
+    zip: string
+    city: string
+  }
+  hasGarage: boolean
+  constructionYear: number
+  description: string
+  image: string
+}
+
+const props = defineProps<{
+  house: House
+  submitLabel: string
+}>()
 
 const emit = defineEmits(['submit'])
 const formStore = useFormStore()

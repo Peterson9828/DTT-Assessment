@@ -1,3 +1,28 @@
+<script setup lang="ts">
+import { ref, defineProps, defineEmits } from 'vue'
+interface Props {
+  outlined: boolean,
+  buttonText: string,
+  alertText: string,
+  disabled: boolean,
+  onlyIcon: boolean
+}
+
+defineProps<Props>()
+
+const dialog = ref(false)
+const emit = defineEmits(['delete'])
+
+const closeDialog = () => {
+  dialog.value = false
+}
+
+const deleteItem = () => {
+  emit('delete')
+  closeDialog()
+}
+</script>
+
 <template>
   <div class="dialog-wrapper" v-if="dialog">
     <div class="dialog-content">
@@ -13,36 +38,10 @@
       </div>
     </div>
   </div>
-  <button
-    v-else
-    class="toggle-dialog-button"
+  <button v-else class="toggle-dialog-button"
     :class="{ 'icon-button': onlyIcon, 'outlined-button': outlined, 'disabled-button': disabled }"
-    @click="dialog = !dialog"
-  >
+    @click="dialog = !dialog">
     <span class="icon" v-if="onlyIcon">X</span>
     <span v-else class="button-text">{{ buttonText }}</span>
   </button>
 </template>
-
-<script setup>
-import { ref, defineProps, defineEmits } from 'vue'
-
-defineProps({
-  outlined: Boolean,
-  buttonText: String,
-  alertText: String,
-  disabled: Boolean,
-  onlyIcon: Boolean
-})
-const dialog = ref(false)
-const emit = defineEmits(['delete'])
-
-const closeDialog = () => {
-  dialog.value = false
-}
-
-const deleteItem = () => {
-  emit('delete')
-  closeDialog()
-}
-</script>
